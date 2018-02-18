@@ -1,0 +1,10 @@
+.DS_Store
+/build
+/output
+/tags
+.idea
+.vs
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc
+Release
+Debug
