@@ -17,7 +17,9 @@ archive=${archive:-0}
 
 shift $((OPTIND-1))
 
-rm -rf build; mkdir -p build/release; cd build/release
+rm -rf build
+mkdir -p build/release
+cd build/release
 
 if [[ "$OSTYPE" == "msys" ]]; then
     cmake -G "Visual Studio 15 Win64" "..\.."
@@ -35,7 +37,7 @@ fi
 if [[ $archive == "1" ]]; then
     
     BUILD_DIR="output"
-    cd "$(dirname "$0")"; mkdir -p ${BUILD_DIR}; cd ${BUILD_DIR}
+    cd ../..; mkdir -p ${BUILD_DIR}; cd ${BUILD_DIR}
     MORKCOIN_NAME="m0rkcoin"
     WINDOWS_BUILD_DIR="$MORKCOIN_NAME-windows"
     MAC_BUILD_DIR="$MORKCOIN_NAME-mac"
@@ -70,7 +72,7 @@ if [[ $archive == "1" ]]; then
             cp ../build/release/src/simplewallet ${LINUX_BUILD_DIR}/
             cp ../build/release/src/walletd ${LINUX_BUILD_DIR}/
             cp ../build/release/src/miner ${LINUX_BUILD_DIR}/
-            tar -zcfv ${LINUX_BUILD_DIR}.tar.gz ${LINUX_BUILD_DIR}
+            tar -zcvf ${LINUX_BUILD_DIR}.tar.gz ${LINUX_BUILD_DIR}
             ;;
     esac
 fi
